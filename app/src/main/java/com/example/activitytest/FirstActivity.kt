@@ -7,13 +7,18 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.activitytest.databinding.FirstLayoutBinding
 
 class FirstActivity : AppCompatActivity() {
+
+    private lateinit var binding: FirstLayoutBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.first_layout)
-        val button1: Button = findViewById(R.id.button1)
-        button1.setOnClickListener {
+        binding = FirstLayoutBinding.inflate(layoutInflater)
+
+        setContentView(binding.root)
+        binding.button1.setOnClickListener {
             Toast.makeText(this, "You clicked Button 1", Toast.LENGTH_SHORT).show()
         }
     }
