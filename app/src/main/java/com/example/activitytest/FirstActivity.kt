@@ -1,5 +1,6 @@
 package com.example.activitytest
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -17,7 +18,8 @@ class FirstActivity : AppCompatActivity() {
 
         setContentView(binding.root)
         binding.button1.setOnClickListener {
-            finish()
+            val intent = Intent(this, SecondActivity::class.java)
+            startActivity(intent)
         }
     }
 
