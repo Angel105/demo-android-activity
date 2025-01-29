@@ -1,6 +1,7 @@
 package com.example.activitytest
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -16,5 +17,8 @@ class SecondActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        val extraData = intent.getStringExtra("extra_data")
+        Log.d("SecondActivity", "extra data is $extraData")
     }
+
 }

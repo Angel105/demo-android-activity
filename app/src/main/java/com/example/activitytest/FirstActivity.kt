@@ -1,7 +1,6 @@
 package com.example.activitytest
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -19,8 +18,9 @@ class FirstActivity : AppCompatActivity() {
 
         setContentView(binding.root)
         binding.button1.setOnClickListener {
-            val intent = Intent(Intent.ACTION_DIAL)
-            intent.data = Uri.parse("tel:10086")
+            val data = "Hello SecondActivity"
+            val intent = Intent(this, SecondActivity::class.java)
+            intent.putExtra("extra_data", data)
             startActivity(intent)
         }
     }
