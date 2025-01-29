@@ -19,8 +19,8 @@ class FirstActivity : AppCompatActivity() {
 
         setContentView(binding.root)
         binding.button1.setOnClickListener {
-            val intent = Intent(Intent.ACTION_VIEW)
-            intent.data = Uri.parse("https://www.baidu.com")
+            val intent = Intent(Intent.ACTION_DIAL)
+            intent.data = Uri.parse("tel:10086")
             startActivity(intent)
         }
     }
