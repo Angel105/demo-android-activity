@@ -2,6 +2,7 @@ package com.example.activitytest
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -35,6 +36,11 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, DialogActivity::class.java)
             startActivity(intent)
         }
+
+        if (savedInstanceState != null) {
+            val tempData = savedInstanceState.getString("data_key")
+            Log.d(tag, "tempData is $tempData")
+        }
     }
 
     override fun onStart() {
@@ -67,5 +73,9 @@ class MainActivity : AppCompatActivity() {
         Log.d(tag, "onRestart")
     }
 
-
+    override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {
+        super.onSaveInstanceState(outState, outPersistentState)
+        val tempData = "Something just typed"
+        outState.putString("data_key", tempData)
+    }
 }
