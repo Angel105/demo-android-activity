@@ -14,16 +14,14 @@ class SecondActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.d("SecondActivity", this.toString())
         enableEdgeToEdge()
         binding = SecondActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.button2.setOnClickListener {
-            Log.d("SecondActivity", "button clicked")
-            val intent = Intent()
-            intent.putExtra("data_return", "Hello FirstActivity")
-            setResult(RESULT_OK, intent)
-            finish()
+            val intent = Intent(this, FirstActivity::class.java)
+            startActivity(intent)
         }
 
         // Handle the Back button press
