@@ -18,6 +18,7 @@ class FirstActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.d("FirstActivity", this.toString())
         binding = FirstLayoutBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -33,8 +34,8 @@ class FirstActivity : AppCompatActivity() {
 
         }
         binding.button1.setOnClickListener {
-            val intent = Intent(this, SecondActivity::class.java)
-            startForResult.launch(intent)
+            val intent = Intent(this, FirstActivity::class.java)
+            startActivity(intent)
         }
     }
 
