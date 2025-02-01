@@ -14,13 +14,13 @@ class SecondActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.d("SecondActivity", this.toString())
+        Log.d("SecondActivity", "Task id is $taskId")
         enableEdgeToEdge()
         binding = SecondActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.button2.setOnClickListener {
-            val intent = Intent(this, FirstActivity::class.java)
+            val intent = Intent(this, ThirdActivity::class.java)
             startActivity(intent)
         }
 

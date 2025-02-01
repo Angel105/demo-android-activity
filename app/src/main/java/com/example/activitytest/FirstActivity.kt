@@ -18,7 +18,7 @@ class FirstActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.d("FirstActivity", this.toString())
+        Log.d("FirstActivity", "Task id is $taskId")
         binding = FirstLayoutBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
