@@ -51,4 +51,9 @@ class FirstActivity : AppCompatActivity() {
         }
         return true
     }
+
+    override fun onRestart() {
+        super.onRestart()
+        Log.d("FirstActivity", "onRestart")
+    }
 }

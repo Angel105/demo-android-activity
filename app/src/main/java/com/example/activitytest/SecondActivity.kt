@@ -35,4 +35,9 @@ class SecondActivity : AppCompatActivity() {
             }
         })
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d("SecondActivity", "onDestroy")
+    }
 }
