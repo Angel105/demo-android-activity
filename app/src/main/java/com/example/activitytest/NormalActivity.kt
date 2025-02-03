@@ -2,9 +2,9 @@ package com.example.activitytest
 
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -38,6 +38,20 @@ class NormalActivity : AppCompatActivity() {
                 Toast.makeText(this@NormalActivity, inputText, Toast.LENGTH_SHORT).show()
                 imageView.setImageResource(R.drawable.img_2)
                 progressBar.progress += 10
+                AlertDialog.Builder(this@NormalActivity).apply {
+                    setTitle("Train Station")
+                    setMessage("Are you leaving now?")
+                    setCancelable(false)
+                    setPositiveButton("OK") { _, _ ->
+                        Toast.makeText(this@NormalActivity, "OK button clicked", Toast.LENGTH_SHORT)
+                            .show()
+                    }
+                    setNegativeButton("Cancel") { _, _ ->
+                        Toast.makeText(this@NormalActivity, "Cancel button clicked", Toast.LENGTH_SHORT)
+                            .show()
+                    }
+                    show()
+                }
             }
         }
 
