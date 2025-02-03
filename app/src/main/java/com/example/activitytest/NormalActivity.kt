@@ -27,18 +27,21 @@ class NormalActivity : AppCompatActivity() {
         }
 
         binding.button.setOnClickListener {
-            // Add event handling logic here
-            Log.d("NormalActivity", "Button clicked")
-            var inputText = binding.editText.text.toString()
-            if (inputText.isEmpty()) {
-                inputText = "Please enter some text"
-            }
-            Toast.makeText(this, inputText, Toast.LENGTH_SHORT).show()
-            binding.imageView.setImageResource(R.drawable.img_2)
-            if (binding.progressBar.visibility == View.VISIBLE) {
-                binding.progressBar.visibility = View.GONE
-            } else {
-                binding.progressBar.visibility = View.VISIBLE
+            binding.apply {
+                // Add event handling logic here
+                // Access views directly without "binding."
+                Log.d("NormalActivity", "Button clicked")
+                var inputText = editText.text.toString()
+                if (inputText.isEmpty()) {
+                    inputText = "Please enter some text"
+                }
+                Toast.makeText(this@NormalActivity, inputText, Toast.LENGTH_SHORT).show()
+                imageView.setImageResource(R.drawable.img_2)
+                if (progressBar.visibility == View.VISIBLE) {
+                    progressBar.visibility = View.GONE
+                } else {
+                    progressBar.visibility = View.VISIBLE
+                }
             }
         }
 
