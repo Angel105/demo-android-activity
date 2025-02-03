@@ -37,11 +37,7 @@ class NormalActivity : AppCompatActivity() {
                 }
                 Toast.makeText(this@NormalActivity, inputText, Toast.LENGTH_SHORT).show()
                 imageView.setImageResource(R.drawable.img_2)
-                if (progressBar.visibility == View.VISIBLE) {
-                    progressBar.visibility = View.GONE
-                } else {
-                    progressBar.visibility = View.VISIBLE
-                }
+                progressBar.progress += 10
             }
         }
 
