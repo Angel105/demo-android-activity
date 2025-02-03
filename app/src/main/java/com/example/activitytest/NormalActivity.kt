@@ -30,6 +30,7 @@ class NormalActivity : AppCompatActivity() {
             Log.d("NormalActivity", "Button clicked")
             val inputText = binding.editText.text.toString()
             Toast.makeText(this, inputText, Toast.LENGTH_SHORT).show()
+            binding.imageView.setImageResource(R.drawable.img_2)
         }
 
     }
