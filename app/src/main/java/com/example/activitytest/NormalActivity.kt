@@ -2,6 +2,7 @@ package com.example.activitytest
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -28,9 +29,17 @@ class NormalActivity : AppCompatActivity() {
         binding.button.setOnClickListener {
             // Add event handling logic here
             Log.d("NormalActivity", "Button clicked")
-            val inputText = binding.editText.text.toString()
+            var inputText = binding.editText.text.toString()
+            if (inputText.isEmpty()) {
+                inputText = "Please enter some text"
+            }
             Toast.makeText(this, inputText, Toast.LENGTH_SHORT).show()
             binding.imageView.setImageResource(R.drawable.img_2)
+            if (binding.progressBar.visibility == View.VISIBLE) {
+                binding.progressBar.visibility = View.GONE
+            } else {
+                binding.progressBar.visibility = View.VISIBLE
+            }
         }
 
     }
