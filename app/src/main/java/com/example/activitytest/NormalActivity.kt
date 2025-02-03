@@ -2,6 +2,7 @@ package com.example.activitytest
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -27,6 +28,8 @@ class NormalActivity : AppCompatActivity() {
         binding.button.setOnClickListener {
             // Add event handling logic here
             Log.d("NormalActivity", "Button clicked")
+            val inputText = binding.editText.text.toString()
+            Toast.makeText(this, inputText, Toast.LENGTH_SHORT).show()
         }
 
     }
