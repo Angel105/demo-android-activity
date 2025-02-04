@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".UILayoutActivity">
 
-    <include layout="@layout/title_layout" />
+    <com.example.activitytest.TitleLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>
