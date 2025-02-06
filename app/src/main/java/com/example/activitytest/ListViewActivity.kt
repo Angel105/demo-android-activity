@@ -5,6 +5,7 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.activitytest.databinding.ActivityListViewBinding
 
 class ListViewActivity : AppCompatActivity() {
@@ -20,12 +21,11 @@ class ListViewActivity : AppCompatActivity() {
 
         setContentView(binding.root)
         initFruits()  // initialize fruit data
-        val adapter = FruitAdapter(this, R.layout.fruit_item, data)
-        binding.listView.adapter = adapter
-        binding.listView.setOnItemClickListener { _, _, position, _ ->
-            val fruit = data[position]
-            Toast.makeText(this, fruit.name, Toast.LENGTH_SHORT).show()
-        }
+        val layoutManager = LinearLayoutManager(this)
+        binding.recyclerView.layoutManager = layoutManager
+        val adapter = FruitAdapter(data)
+
+        binding.recyclerView.adapter = adapter
     }
 
     private fun initFruits() {
