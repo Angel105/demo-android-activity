@@ -8,12 +8,7 @@ import com.example.activitytest.databinding.ActivityListViewBinding
 
 class ListViewActivity : AppCompatActivity() {
 
-    private val data = listOf(
-        "Apple", "Banana", "Orange", "Watermelon",
-        "Pear", "Grape", "Pineapple", "Strawberry", "Cherry", "Mango",
-        "Apple", "Banana", "Orange", "Watermelon", "Pear", "Grape",
-        "Pineapple", "Strawberry", "Cherry", "Mango"
-    )
+    private val data = ArrayList<Fruit>()
 
     private lateinit var binding: ActivityListViewBinding
 
@@ -23,8 +18,24 @@ class ListViewActivity : AppCompatActivity() {
         binding = ActivityListViewBinding.inflate(layoutInflater)
 
         setContentView(binding.root)
-        val adapter = ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,data)
+        initFruits()  // initialize fruit data
+        val adapter = FruitAdapter(this, R.layout.fruit_item, data)
         binding.listView.adapter = adapter
+    }
+
+    private fun initFruits() {
+        repeat(2) {
+            data.add(Fruit("Apple", R.drawable.apple_pic))
+            data.add(Fruit("Banana", R.drawable.banana_pic))
+            data.add(Fruit("Orange", R.drawable.orange_pic))
+            data.add(Fruit("Watermelon", R.drawable.watermelon_pic))
+            data.add(Fruit("Pear", R.drawable.pear_pic))
+            data.add(Fruit("Grape", R.drawable.grape_pic))
+            data.add(Fruit("Pineapple", R.drawable.pineapple_pic))
+            data.add(Fruit("Strawberry", R.drawable.strawberry_pic))
+            data.add(Fruit("Cherry", R.drawable.cherry_pic))
+            data.add(Fruit("Mango", R.drawable.mango_pic))
+        }
     }
 
 }
