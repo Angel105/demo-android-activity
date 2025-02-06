@@ -2,6 +2,7 @@ package com.example.activitytest
 
 import android.os.Bundle
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.example.activitytest.databinding.ActivityListViewBinding
@@ -21,6 +22,10 @@ class ListViewActivity : AppCompatActivity() {
         initFruits()  // initialize fruit data
         val adapter = FruitAdapter(this, R.layout.fruit_item, data)
         binding.listView.adapter = adapter
+        binding.listView.setOnItemClickListener { parent, view, position, id ->
+            val fruit = data[position]
+            Toast.makeText(this, fruit.name, Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun initFruits() {
