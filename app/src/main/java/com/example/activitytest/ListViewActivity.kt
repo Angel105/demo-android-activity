@@ -22,7 +22,7 @@ class ListViewActivity : AppCompatActivity() {
         initFruits()  // initialize fruit data
         val adapter = FruitAdapter(this, R.layout.fruit_item, data)
         binding.listView.adapter = adapter
-        binding.listView.setOnItemClickListener { parent, view, position, id ->
+        binding.listView.setOnItemClickListener { _, _, position, _ ->
             val fruit = data[position]
             Toast.makeText(this, fruit.name, Toast.LENGTH_SHORT).show()
         }
