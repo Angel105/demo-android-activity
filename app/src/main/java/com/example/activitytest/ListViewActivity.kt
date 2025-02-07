@@ -22,6 +22,7 @@ class ListViewActivity : AppCompatActivity() {
         setContentView(binding.root)
         initFruits()  // initialize fruit data
         val layoutManager = LinearLayoutManager(this)
+        layoutManager.orientation = LinearLayoutManager.HORIZONTAL
         binding.recyclerView.layoutManager = layoutManager
         val adapter = FruitAdapter(data)
 
