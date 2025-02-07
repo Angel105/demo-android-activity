@@ -1,11 +1,9 @@
 package com.example.activitytest
 
 import android.os.Bundle
-import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.activitytest.databinding.ActivityListViewBinding
 
 class ListViewActivity : AppCompatActivity() {
@@ -21,8 +19,7 @@ class ListViewActivity : AppCompatActivity() {
 
         setContentView(binding.root)
         initFruits()  // initialize fruit data
-        val layoutManager = LinearLayoutManager(this)
-        layoutManager.orientation = LinearLayoutManager.HORIZONTAL
+        val layoutManager = StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL)
         binding.recyclerView.layoutManager = layoutManager
         val adapter = FruitAdapter(data)
 
@@ -31,17 +28,26 @@ class ListViewActivity : AppCompatActivity() {
 
     private fun initFruits() {
         repeat(2) {
-            data.add(Fruit("Apple", R.drawable.apple_pic))
-            data.add(Fruit("Banana", R.drawable.banana_pic))
-            data.add(Fruit("Orange", R.drawable.orange_pic))
-            data.add(Fruit("Watermelon", R.drawable.watermelon_pic))
-            data.add(Fruit("Pear", R.drawable.pear_pic))
-            data.add(Fruit("Grape", R.drawable.grape_pic))
-            data.add(Fruit("Pineapple", R.drawable.pineapple_pic))
-            data.add(Fruit("Strawberry", R.drawable.strawberry_pic))
-            data.add(Fruit("Cherry", R.drawable.cherry_pic))
-            data.add(Fruit("Mango", R.drawable.mango_pic))
+            data.add(Fruit(getRandomLengthString("Apple"), R.drawable.apple_pic))
+            data.add(Fruit(getRandomLengthString("Banana"), R.drawable.banana_pic))
+            data.add(Fruit(getRandomLengthString("Orange"), R.drawable.orange_pic))
+            data.add(Fruit(getRandomLengthString("Watermelon"), R.drawable.watermelon_pic))
+            data.add(Fruit(getRandomLengthString("Pear"), R.drawable.pear_pic))
+            data.add(Fruit(getRandomLengthString("Grape"), R.drawable.grape_pic))
+            data.add(Fruit(getRandomLengthString("Pineapple"), R.drawable.pineapple_pic))
+            data.add(Fruit(getRandomLengthString("Strawberry"), R.drawable.strawberry_pic))
+            data.add(Fruit(getRandomLengthString("Cherry"), R.drawable.cherry_pic))
+            data.add(Fruit(getRandomLengthString("Mango"), R.drawable.mango_pic))
         }
+    }
+
+    private fun getRandomLengthString(str: String): String {
+        val n = (1..20).random()
+        val builder = StringBuilder()
+        repeat(n) {
+            builder.append(str)
+        }
+        return builder.toString()
     }
 
 }
