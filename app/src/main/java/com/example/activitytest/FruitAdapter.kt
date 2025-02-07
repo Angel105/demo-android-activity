@@ -18,16 +18,17 @@ class FruitAdapter(val fruitList: List<Fruit>): RecyclerView.Adapter<FruitAdapte
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.fruit_item, parent, false)
         val viewHolder = ViewHolder(view)
+        // Example of setting a click listener on the entire item
         viewHolder.itemView.setOnClickListener {
-            val position = viewHolder.adapterPosition
-            val fruit = fruitList[position]
-            Toast.makeText(parent.context, "you clicked view ${fruit.name}", Toast.LENGTH_SHORT).show()
+            val position = viewHolder.bindingAdapterPosition
+            if (position != RecyclerView.NO_POSITION) {
+                val fruit = fruitList[position]
+                // Handle item click here, using the 'position' and 'fruit'
+                Toast.makeText(parent.context, "You clicked on fruit image ${fruit.name} at position $position", Toast.LENGTH_SHORT).show()
+                println("You clicked on fruit image: ${fruit.name} at position: $position")
+            }
         }
-        viewHolder.fruitImage.setOnClickListener {
-            val position = viewHolder.adapterPosition
-            val fruit = fruitList[position]
-            Toast.makeText(parent.context, "you clicked image ${fruit.name}", Toast.LENGTH_SHORT).show()
-        }
+
         return viewHolder
     }
 
@@ -35,6 +36,13 @@ class FruitAdapter(val fruitList: List<Fruit>): RecyclerView.Adapter<FruitAdapte
         val fruit = fruitList[position]
         holder.fruitImage.setImageResource(fruit.imageId)
         holder.fruitName.text = fruit.name
+
+        // Example of setting a click listener on a specific view within the item
+        holder.fruitName.setOnClickListener {
+            // You can use the 'position' here directly
+            Toast.makeText(holder.itemView.context, "You clicked on fruit name ${fruit.name} at position: $position", Toast.LENGTH_SHORT).show()
+            println("Clicked on fruit name: ${fruit.name} at position: $position")
+        }
     }
 
     override fun getItemCount() = fruitList.size
