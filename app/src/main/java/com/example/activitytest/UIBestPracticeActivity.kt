@@ -12,7 +12,7 @@ class UIBestPracticeActivity : AppCompatActivity(), View.OnClickListener {
 
     private val msgList = ArrayList<Msg>()
 
-    private var adapter: MsgAdapter? = null
+    private lateinit var adapter: MsgAdapter
 
     private lateinit var binding: ActivityUiBestPracticeBinding
 
@@ -27,7 +27,9 @@ class UIBestPracticeActivity : AppCompatActivity(), View.OnClickListener {
 
         val layoutManager = LinearLayoutManager(this)
         binding.recyclerView.layoutManager = layoutManager
-        adapter = MsgAdapter(msgList)
+        if (!::adapter.isInitialized) {
+            adapter = MsgAdapter(msgList)
+        }
         binding.recyclerView.adapter = adapter
         binding.send.setOnClickListener(this)
 
@@ -48,7 +50,7 @@ class UIBestPracticeActivity : AppCompatActivity(), View.OnClickListener {
                 if (content.isNotEmpty()) {
                     val msg = Msg(content, Msg.TYPE_SENT)
                     msgList.add(msg)
-                    adapter?.notifyItemInserted(msgList.size - 1) // when there is a new msg, refresh RecyclerView
+                    adapter.notifyItemInserted(msgList.size - 1) // when there is a new msg, refresh RecyclerView
                     binding.recyclerView.scrollToPosition(msgList.size - 1) // scroll RecyclerView to the last item
                     binding.inputText.text.clear() // clear the EditText view
                 }
