@@ -26,6 +26,7 @@ class FragmentActivity : AppCompatActivity(), FragmentNavigation {
         val fragmentManager = supportFragmentManager
         val transaction = fragmentManager.beginTransaction()
         transaction.replace(R.id.rightLayout, fragment)
+        transaction.addToBackStack(null)
         transaction.commit()
     }
 
