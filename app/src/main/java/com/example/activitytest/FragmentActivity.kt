@@ -18,19 +18,19 @@ class FragmentActivity : AppCompatActivity(), FragmentNavigation {
         binding = ActivityFragmentBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        replaceFragment(RightFragment())
+//        replaceFragment(RightFragment())
         supportActionBar?.hide()
     }
 
-    private fun replaceFragment(fragment: Fragment) {
+    /*private fun replaceFragment(fragment: Fragment) {
         val fragmentManager = supportFragmentManager
         val transaction = fragmentManager.beginTransaction()
         transaction.replace(R.id.rightLayout, fragment)
         transaction.addToBackStack(null)
         transaction.commit()
-    }
+    }*/
 
     override fun navigateToFragment(fragment: Fragment) {
-        replaceFragment(fragment)
+//        replaceFragment(fragment)
     }
 }

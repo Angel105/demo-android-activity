@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:baselineAligned="false"
-    tools:context=".FragmentActivity">
-
+    android:layout_height="match_parent">
 
     <fragment
         android:id="@+id/leftFrag"
@@ -16,12 +12,11 @@
         android:layout_height="match_parent"
         android:layout_weight="1" />
 
-<!--    <FrameLayout
-        android:id="@+id/rightLayout"
+    <fragment
+        android:id="@+id/rightFrag"
+        android:name="com.example.activitytest.RightFragment"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="1">
-    </FrameLayout>-->
-
+        android:layout_weight="3" />
 
 </LinearLayout>
