@@ -8,9 +8,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.example.activitytest.R
+import com.example.activitytest.databinding.ActivityBroadcastTestMainBinding
 
 class BroadcastTestMainActivity : AppCompatActivity() {
 
@@ -21,16 +19,24 @@ class BroadcastTestMainActivity : AppCompatActivity() {
     }
 
     lateinit var timeChangeReceiver: TimeChangeReceiver
+    private lateinit var binding: ActivityBroadcastTestMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_broadcast_test_main)
+        binding = ActivityBroadcastTestMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         val intentFilter = IntentFilter()
         intentFilter.addAction("android.intent.action.TIME_TICK")
         timeChangeReceiver = TimeChangeReceiver()
         registerReceiver(timeChangeReceiver, intentFilter)
+
+        binding.button.setOnClickListener {
+            val intent = Intent("com.example.broadcasttest.MY_BROADCAST")
+            intent.setPackage(packageName)
+            sendOrderedBroadcast(intent, null)
+        }
     }
 
     override fun onDestroy() {
