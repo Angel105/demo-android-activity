@@ -35,7 +35,7 @@ class BroadcastTestMainActivity : AppCompatActivity() {
         binding.button.setOnClickListener {
             val intent = Intent("com.example.broadcasttest.MY_BROADCAST")
             intent.setPackage(packageName)
-            sendOrderedBroadcast(intent, null)
+            sendBroadcast(intent)
         }
     }
 
