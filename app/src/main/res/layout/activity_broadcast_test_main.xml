@@ -9,9 +9,9 @@
 
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/forceOffline"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Send Broadcast"
+        android:text="Send force offline broadcast"
         android:layout_marginTop="80dp"/>
 </LinearLayout>

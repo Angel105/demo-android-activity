@@ -5,12 +5,12 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
 import com.example.activitytest.databinding.ActivityBroadcastTestMainBinding
 
-class BroadcastTestMainActivity : AppCompatActivity() {
+class BroadcastTestMainActivity : BaseActivity() {
 
     inner class TimeChangeReceiver: BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
@@ -32,11 +32,14 @@ class BroadcastTestMainActivity : AppCompatActivity() {
         timeChangeReceiver = TimeChangeReceiver()
         registerReceiver(timeChangeReceiver, intentFilter)
 
-        binding.button.setOnClickListener {
-            val intent = Intent("com.example.broadcasttest.MY_BROADCAST")
-            intent.setPackage(packageName)
-            sendOrderedBroadcast(intent, null)
+        binding.forceOffline.setOnClickListener {
+            Log.d("BroadcastTestMainAct", "forceOffline - Button Clicked") // Added log
+            val intent = Intent("com.example.broadcasttest.FORCE_OFFLINE")
+//            intent.setPackage(packageName)
+            sendBroadcast(intent)
+            Log.d("BroadcastTestMainAct", "forceOffline - Broadcast Sent") // Log when broadcast is sent
         }
+        supportActionBar?.hide()
     }
 
     override fun onDestroy() {
