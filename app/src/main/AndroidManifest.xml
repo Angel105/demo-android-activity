@@ -15,8 +15,8 @@
         android:theme="@style/Theme.ActivityTest"
         tools:targetApi="31">
         <activity
-            android:name="com.example.datapersistencetest.FilePersistenceTestActivity"
-            android:exported="true">
+            android:name="com.example.datapersistencetest.SharedPreferencesTestActivity"
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,8 +24,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.broadcasttest.LoginActivity"
+            android:name="com.example.datapersistencetest.FilePersistenceTestActivity"
             android:exported="false"/>
+        <activity
+            android:name="com.example.broadcasttest.LoginActivity"
+            android:exported="false" />
         <activity
             android:name="com.example.broadcasttest.ForceOfflineActivity"
             android:exported="false" />
