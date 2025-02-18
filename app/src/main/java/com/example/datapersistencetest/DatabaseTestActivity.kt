@@ -2,6 +2,7 @@ package com.example.datapersistencetest
 
 import android.content.ContentValues
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.example.activitytest.databinding.ActivityDatabaseTestBinding
@@ -53,6 +54,23 @@ class DatabaseTestActivity : AppCompatActivity() {
         binding.deleteData.setOnClickListener {
             val db = dbHelper.writableDatabase
             db.delete("Book", "pages < ?", arrayOf("300"))
+        }
+
+        binding.queryData.setOnClickListener {
+            val db = dbHelper.writableDatabase
+            // query all data in Book table
+            val cursor = db.query("Book", null, null, null, null, null, null)
+            if (cursor.moveToFirst()) {
+                do {
+                    // Get all the data from cursor object and print
+                    val name = cursor.getString(cursor.getColumnIndex("name"))
+                    val author = cursor.getString(cursor.getColumnIndex("author"))
+                    val pages = cursor.getInt(cursor.getColumnIndex("pages"))
+                    val price = cursor.getDouble(cursor.getColumnIndex("price"))
+                    Log.d("DatabaseTestActivity", "Book name is $name, Author is $author, Pages is $pages, Price is $price")
+                } while (cursor.moveToNext())
+            }
+            cursor.close()
         }
 
         supportActionBar?.hide()
