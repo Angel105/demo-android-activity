@@ -18,9 +18,13 @@ class MyDatabaseHelper(val context: Context, name: String, version: Int): SQLite
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-        db?.execSQL("drop table if exists Book")
-        db?.execSQL("drop table if exists Category")
-        onCreate(db)
+        if (oldVersion <= 1) {
+            db?.execSQL(createCategory)
+        }
+        if (oldVersion <= 2) {
+            db?.execSQL("alter table Book add column category_id integer")
+        }
+
     }
 
 }
