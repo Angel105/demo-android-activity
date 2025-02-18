@@ -64,10 +64,7 @@ class DatabaseTestActivity : AppCompatActivity() {
             db.beginTransaction() // start transaction
             try {
                 db.delete("Book", null, null)
-                if (true) {
-                    // Manually throw an exception to fail the transaction
-                    throw NullPointerException()
-                }
+
                 val values = ContentValues().apply {
                     put("name", "La Dame aux Camélias")
                     put("author", "Alexandre Dumas")
