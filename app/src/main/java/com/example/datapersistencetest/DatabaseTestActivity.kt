@@ -1,5 +1,6 @@
 package com.example.datapersistencetest
 
+import android.content.ContentValues
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -19,6 +20,29 @@ class DatabaseTestActivity : AppCompatActivity() {
         binding.createDatabase.setOnClickListener {
             dbHelper.writableDatabase
         }
+
+        binding.addData.setOnClickListener {
+            val db = dbHelper.writableDatabase
+            val values1 = ContentValues().apply {
+                // construct the first row of data
+                put("name", "Robinson Crusoe")
+                put("author", "Daniel Defoe")
+                put("pages", 144)
+                put("price", 9.65)
+            }
+            // insert the first row of data
+            db.insert("Book", null, values1)
+            val values2 = ContentValues().apply {
+                // construct the second row of data
+                put("name", "De Drie Musketiers")
+                put("author", "Alexandre Dumas")
+                put("pages", 355)
+                put("price", 4.9)
+            }
+            // insert the second row of data
+            db.insert("Book", null, values2)
+        }
+
         supportActionBar?.hide()
     }
 }
