@@ -7,7 +7,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import com.example.activitytest.R
+import androidx.core.content.edit
 import com.example.activitytest.databinding.ActivitySharedPreferencesTestBinding
 
 class SharedPreferencesTestActivity : AppCompatActivity() {
@@ -24,11 +24,16 @@ class SharedPreferencesTestActivity : AppCompatActivity() {
             // Save data
             Log.d("SharedPreferencesTest", "Saving data...")
             val sharedPreferences = getSharedPreferences("data", Context.MODE_PRIVATE)
-            val editor = sharedPreferences.edit()
+            sharedPreferences.edit {
+                putString("name", "Andrew")
+                putInt("age", 28)
+                putBoolean("married", false)
+            }
+            /*val editor = sharedPreferences.edit()
             editor.putString("name", "Andrew")
             editor.putInt("age", 28)
             editor.putBoolean("married", false)
-            editor.apply()
+            editor.apply()*/
 
             restoreData(sharedPreferences)
         }
