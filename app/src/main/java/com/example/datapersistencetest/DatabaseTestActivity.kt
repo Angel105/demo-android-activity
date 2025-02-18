@@ -15,7 +15,7 @@ class DatabaseTestActivity : AppCompatActivity() {
         binding = ActivityDatabaseTestBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val dbHelper = MyDatabaseHelper(this, "BookStore.db", 1)
+        val dbHelper = MyDatabaseHelper(this, "BookStore.db", 2)
         binding.createDatabase.setOnClickListener {
             dbHelper.writableDatabase
         }
