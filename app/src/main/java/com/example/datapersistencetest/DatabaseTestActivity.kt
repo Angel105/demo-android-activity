@@ -24,42 +24,27 @@ class DatabaseTestActivity : AppCompatActivity() {
 
         binding.addData.setOnClickListener {
             val db = dbHelper.writableDatabase
-            val values1 = ContentValues().apply {
-                // construct the first row of data
-                put("name", "Robinson Crusoe")
-                put("author", "Daniel Defoe")
-                put("pages", 144)
-                put("price", 9.65)
-            }
             // insert the first row of data
-            db.insert("Book", null, values1)
-            val values2 = ContentValues().apply {
-                // construct the second row of data
-                put("name", "De Drie Musketiers")
-                put("author", "Alexandre Dumas")
-                put("pages", 355)
-                put("price", 4.9)
-            }
+            db.execSQL("insert into Book (name, author, pages, price) values(?, ?, ?, ?)", arrayOf("Robinson Crusoe", "Daniel Defoe", "144", "9.65"))
             // insert the second row of data
-            db.insert("Book", null, values2)
+            db.execSQL("insert into Book (name, author, pages, price) values(?, ?, ?, ?)", arrayOf("De Drie Musketiers", "Alexandre Dumas", "355", "4.9"))
         }
 
         binding.updateData.setOnClickListener {
             val db = dbHelper.writableDatabase
-            val values = ContentValues()
-            values.put("price", 5.45)
-            db.update("Book", values, "name = ?", arrayOf("Robinson Crusoe"))
+            db.execSQL("update Book set price = ? where name = ?", arrayOf("4.99", "De Drie Musketiers"))
         }
 
         binding.deleteData.setOnClickListener {
             val db = dbHelper.writableDatabase
-            db.delete("Book", "pages < ?", arrayOf("300"))
+            db.execSQL("delete from Book where pages < ?", arrayOf("300"))
         }
 
         binding.queryData.setOnClickListener {
             val db = dbHelper.writableDatabase
             // query all data in Book table
-            val cursor = db.query("Book", null, null, null, null, null, null)
+            // val cursor = db.query("Book", null, null, null, null, null, null)
+            val cursor = db.rawQuery("select * from Book", null)
             if (cursor.moveToFirst()) {
                 do {
                     // Get all the data from cursor object and print
@@ -70,6 +55,7 @@ class DatabaseTestActivity : AppCompatActivity() {
                     Log.d("DatabaseTestActivity", "Book name is $name, Author is $author, Pages is $pages, Price is $price")
                 } while (cursor.moveToNext())
             }
+
             cursor.close()
         }
 
