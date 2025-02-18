@@ -59,6 +59,32 @@ class DatabaseTestActivity : AppCompatActivity() {
             cursor.close()
         }
 
+        binding.replaceData.setOnClickListener {
+            val db = dbHelper.writableDatabase
+            db.beginTransaction() // start transaction
+            try {
+                db.delete("Book", null, null)
+                if (true) {
+                    // Manually throw an exception to fail the transaction
+                    throw NullPointerException()
+                }
+                val values = ContentValues().apply {
+                    put("name", "La Dame aux Camélias")
+                    put("author", "Alexandre Dumas")
+                    put("pages", 725)
+                    put("price", 6.5)
+                }
+                db.insert("Book", null, values)
+                db.setTransactionSuccessful() // successful transaction
+
+            } catch (e: Exception) {
+                e.printStackTrace()
+            } finally {
+                db.endTransaction() // end transaction
+            }
+        }
+
+
         supportActionBar?.hide()
     }
 }
