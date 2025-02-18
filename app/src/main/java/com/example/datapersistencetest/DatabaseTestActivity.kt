@@ -43,6 +43,13 @@ class DatabaseTestActivity : AppCompatActivity() {
             db.insert("Book", null, values2)
         }
 
+        binding.updateData.setOnClickListener {
+            val db = dbHelper.writableDatabase
+            val values = ContentValues()
+            values.put("price", 5.45)
+            db.update("Book", values, "name = ?", arrayOf("Robinson Crusoe"))
+        }
+
         supportActionBar?.hide()
     }
 }
