@@ -50,6 +50,11 @@ class DatabaseTestActivity : AppCompatActivity() {
             db.update("Book", values, "name = ?", arrayOf("Robinson Crusoe"))
         }
 
+        binding.deleteData.setOnClickListener {
+            val db = dbHelper.writableDatabase
+            db.delete("Book", "pages < ?", arrayOf("300"))
+        }
+
         supportActionBar?.hide()
     }
 }
