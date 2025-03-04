@@ -1,0 +1,42 @@
+package com.example.multimediatest
+
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.Context
+import android.graphics.BitmapFactory
+import android.os.Build
+import android.os.Bundle
+import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.NotificationCompat
+import com.example.activitytest.R
+import com.example.activitytest.databinding.ActivityNotificationTestBinding
+
+class NotificationTestActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityNotificationTestBinding
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        binding = ActivityNotificationTestBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        val manager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val channel = NotificationChannel("normal", "Normal", NotificationManager.IMPORTANCE_DEFAULT)
+            manager.createNotificationChannel(channel)
+        }
+
+        binding.sendNotice.setOnClickListener {
+            val notification = NotificationCompat.Builder(this, "normal")
+                .setContentTitle("This is content title")
+                .setContentText("This is content text")
+                .setSmallIcon(R.drawable.small_icon)
+                .setLargeIcon(BitmapFactory.decodeResource(resources, R.drawable.large_icon))
+                .build()
+            manager.notify(1, notification)
+        }
+
+    }
+}
