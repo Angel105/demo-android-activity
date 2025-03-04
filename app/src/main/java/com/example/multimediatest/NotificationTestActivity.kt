@@ -28,12 +28,14 @@ class NotificationTestActivity : AppCompatActivity() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channel = NotificationChannel("normal", "Normal", NotificationManager.IMPORTANCE_DEFAULT)
             manager.createNotificationChannel(channel)
+            val channel2 = NotificationChannel("important", "Important", NotificationManager.IMPORTANCE_HIGH)
+            manager.createNotificationChannel(channel2)
         }
 
         binding.sendNotice.setOnClickListener {
             val intent = Intent(this, NotificationActivity::class.java)
             val pi = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE)
-            val notification = NotificationCompat.Builder(this, "normal")
+            val notification = NotificationCompat.Builder(this, "important")
                 .setContentTitle("This is content title")
                 .setStyle(NotificationCompat.BigPictureStyle().bigPicture(BitmapFactory.decodeResource(resources, R.drawable.big_image)))
                 .setSmallIcon(R.drawable.small_icon)
