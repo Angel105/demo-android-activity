@@ -35,7 +35,7 @@ class NotificationTestActivity : AppCompatActivity() {
             val pi = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE)
             val notification = NotificationCompat.Builder(this, "normal")
                 .setContentTitle("This is content title")
-                .setContentText("This is content text")
+                .setStyle(NotificationCompat.BigTextStyle().bigText("Learn how to build notifications, send and sync data, and use voice actions. Get the official Android IDE and developer tools to build apps for Android."))
                 .setSmallIcon(R.drawable.small_icon)
                 .setLargeIcon(BitmapFactory.decodeResource(resources, R.drawable.large_icon))
                 .setContentIntent(pi)
